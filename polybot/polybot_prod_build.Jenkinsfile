@@ -15,8 +15,8 @@ pipeline {
                 {
                     sh '''
                     docker login -u $USERNAME -p $PASSWORD
-                    docker build -t $DH_NAME/cicd-Bolybot:$FULL_VER .
-                    docker push $DH_NAME/cicd-Bolybot:$FULL_VER
+                    docker build -t $DH_NAME/cicd-bolybot:$FULL_VER .
+                    docker push $DH_NAME/cicd-bolybot:$FULL_VER
                     '''
                 }
 
@@ -24,7 +24,7 @@ pipeline {
             stage('Trigger Release') {
             steps {
                 build job: 'Release', wait: false, parameters: [
-                    string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/cicd-Bolybot:$FULL_VER")
+                    string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/cicd-bolybot:$FULL_VER")
                 ]
             }
         }
