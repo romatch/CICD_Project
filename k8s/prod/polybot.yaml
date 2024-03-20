@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-Bolybot
+  labels:
+    app: cicd-Bolybot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicd-Bolybot
+  template:
+    metadata:
+        labels:
+          app: cicd-Bolybot
+    spec:
+      containers:
+      - name: server
+        image: IMG_URL  # placeholder. to be replaces by jenkins releases pipeline
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-Bolybot-svc
+spec:
+  selector:
+    app: cicd-Bolybot
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
