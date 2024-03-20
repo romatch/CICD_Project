@@ -11,22 +11,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker_user_Cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
-                {
+                withCredentials([usernamePassword(credentialsId: 'docker_user_Cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
                     docker login -u $USERNAME -p $PASSWORD
                     docker build -t $DH_NAME/cicd-bolybot:$FULL_VER .
                     docker push $DH_NAME/cicd-bolybot:$FULL_VER
                     '''
                 }
-
             }
-            stage('Trigger Release') {
+        } // Closing brace for "Build" stage
+
+        stage('Trigger Release') {
             steps {
                 build job: 'Release', wait: false, parameters: [
                     string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/cicd-bolybot:$FULL_VER")
                 ]
             }
         }
+    }
 }
-
