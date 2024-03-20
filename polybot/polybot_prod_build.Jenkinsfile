@@ -30,4 +30,13 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh '''
+            docker system prune -a -f --filter "until=24h"
+            docker builder prune -a -f --filter "until=24h"
+            '''
+            cleanWs()
+        }
+    }
 }
