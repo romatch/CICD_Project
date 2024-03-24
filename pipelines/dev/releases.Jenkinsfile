@@ -4,7 +4,6 @@ pipeline {
     parameters { string(name: 'IMG_URL', defaultValue: '', description: '') }
 
     stages {
-        stages {
         stage('Update YAML') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
