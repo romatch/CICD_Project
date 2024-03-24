@@ -7,13 +7,13 @@ pipeline {
         stage('Update YAML') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''
-                    printenv
+
                     case "${IMG_URL}" in
                           *-polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
                           *-yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
                           *) exit 7;;
                     esac
+                    sh '''
 
                     git checkout releases
                     git merge origin/main
