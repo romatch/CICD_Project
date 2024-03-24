@@ -24,7 +24,9 @@ pipeline {
                     git add $YAML_FILE
                     git commit -m "$IMG_URL"
                     git push https://romatch:$PASSWORD@github.com/romatch/CICD_Project.git releases
+
                     '''
+                }
             }
         }
     }
