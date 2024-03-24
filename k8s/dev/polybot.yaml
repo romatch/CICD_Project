@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bolybot
+  name: polybot
   labels:
-    app: bolybot
+    app: polybot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bolybot
+      app: polybot
   template:
     metadata:
         labels:
-          app: bolybot
+          app: polybot
     spec:
       containers:
       - name: server
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bolybot-svc
+  name: polybot-svc
 spec:
   selector:
-    app: bolybot
+    app: polybot
   ports:
     - protocol: TCP
       port: 8443
