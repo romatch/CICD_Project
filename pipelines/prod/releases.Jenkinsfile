@@ -8,13 +8,12 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
-                    case "${IMG_URL}" in
-                          *-polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
-                          *-yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
-                          *) exit 7;;
-                    esac
                     sh '''
-
+                    case "${IMG_URL}" in
+                        *-polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
+                        *-yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
+                        *) exit 7;;
+                    esac
                     git checkout releases
                     git merge origin/main
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
