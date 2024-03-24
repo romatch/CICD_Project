@@ -11,8 +11,8 @@ pipeline {
                     sh '''
                    echo "IMG_URL: ${IMG_URL}"
                     case "${IMG_URL}" in
-                        *-polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
-                        *-yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
+                        *polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
+                        *yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
                         *)
                             echo "Unknown IMG_URL: ${IMG_URL}"
                             exit 7;;
