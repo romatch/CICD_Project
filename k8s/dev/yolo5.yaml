@@ -1,31 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cicd-bolybot
+  name: yolo5
   labels:
-    app: cicd-bolybot
+    app: yolo5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cicd-bolybot
+      app: yolo5
   template:
     metadata:
         labels:
-          app: cicd-bolybot
+          app: yolo5
     spec:
       containers:
       - name: server
         image: IMG_URL  # placeholder. to be replaces by jenkins releases pipeline
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: cicd-bolybot-svc
-spec:
-  selector:
-    app: cicd-bolybot
-  ports:
-    - protocol: TCP
-      port: 8443
-      targetPort: 8443

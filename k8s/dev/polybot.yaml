@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cicd-bolybot
+  name: bolybot
   labels:
-    app: cicd-bolybot
+    app: bolybot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cicd-bolybot
+      app: bolybot
   template:
     metadata:
         labels:
-          app: cicd-bolybot
+          app: bolybot
     spec:
       containers:
       - name: server
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cicd-bolybot-svc
+  name: bolybot-svc
 spec:
   selector:
-    app: cicd-bolybot
+    app: bolybot
   ports:
     - protocol: TCP
       port: 8443
