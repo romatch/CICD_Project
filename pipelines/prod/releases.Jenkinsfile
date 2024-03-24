@@ -7,16 +7,15 @@ pipeline {
         stage('Update YAML') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-
                     sh '''
-                   echo "IMG_URL: ${IMG_URL}"
-                    case "${IMG_URL}" in
-                        *polybot*) YAML_FILE="k8s/prod/polybot.yaml";;
-                        *yolo5*) YAML_FILE="k8s/prod/yolo5.yaml";;
-                        *)
-                            echo "Unknown IMG_URL: ${IMG_URL}"
-                            exit 7;;
-                    esac
+                    printenv
+                    if [[ "$IMG_URL" == *"-polybot"* ]]; then
+                        YAML_FILE="k8s/prod/polybot.yaml"
+                    elif [[ "$IMG_URL" == *"-yolo5"* ]]; then
+                        YAML_FILE="k8s/prod/yolo5.yaml"
+                    else
+                        exit 7
+                    fi
 
                     git checkout releases
                     git merge origin/main
