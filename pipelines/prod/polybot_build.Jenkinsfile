@@ -18,6 +18,7 @@ pipeline {
                     docker build -t $DH_NAME/cicd-polybot:$FULL_VER .
                     docker push $DH_NAME/cicd-polybot:$FULL_VER
                     '''
+
                 }
             }
         } // Closing brace for "Build" stage
