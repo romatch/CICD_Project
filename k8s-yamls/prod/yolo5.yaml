@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: server
-        image: IMG_URL  # placeholder. to be replaces by jenkins releases pipeline
+        image: romkatch/k8s-yolo5:0.0.1  # placeholder. to be replaces by jenkins releases pipeline

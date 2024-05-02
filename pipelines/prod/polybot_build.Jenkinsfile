@@ -15,8 +15,8 @@ pipeline {
                     sh '''
                     cd polybot
                     docker login -u $USERNAME -p $PASSWORD
-                    docker build -t $DH_NAME/cicd-polybot:$FULL_VER .
-                    docker push $DH_NAME/cicd-polybot:$FULL_VER
+                    docker build -t $DH_NAME/k8s-polybot:$FULL_VER .
+                    docker push $DH_NAME/k8s-polybot:$FULL_VER
                     '''
 
                 }
@@ -26,7 +26,7 @@ pipeline {
         stage('Trigger Release') {
             steps {
                 build job: 'releases_prod', wait: false, parameters: [
-                    string(name: 'IMG_URL', value: "$DH_NAME/cicd-polybot:$FULL_VER")
+                    string(name: 'IMG_URL', value: "$DH_NAME/k8s-polybot:$FULL_VER")
                 ]
             }
         }
