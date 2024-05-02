@@ -126,7 +126,7 @@ def consume():
                     logger.info(f'Stored prediction summary in DynamoDB')
                     logger.info(f'before post')
                     requests.get(
-                        f'https://roman-bot.devops-int-college.com:443/results/?predictionId={prediction_id}&chatId={chat_id}')
+                        f'http://polybot-svc:8443/results/?predictionId={prediction_id}&chatId={chat_id}')
                     logger.info(f'after post')
 
                 time.sleep(7)
