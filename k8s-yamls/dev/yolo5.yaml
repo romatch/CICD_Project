@@ -1,0 +1,38 @@
+# yolo-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo5
+  labels:
+    app: yolo5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yolo5
+  template:
+    metadata:
+        labels:
+          app: yolo5
+    spec:
+      containers:
+      - name: yolo5
+        image: romkatch/k8s-yolo5:0.0.1
+        ports:
+        - containerPort: 8080
+
+---
+# yolo-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: yolo5-svc
+spec:
+  selector:
+    app: yolo5
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
