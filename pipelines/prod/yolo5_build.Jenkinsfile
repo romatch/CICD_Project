@@ -13,10 +13,10 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_user_Cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                    cd polybot
+                    cd yolo5
                     docker login -u $USERNAME -p $PASSWORD
-                    docker build -t $DH_NAME/k8s-yolo5:$FULL_VER .
-                    docker push $DH_NAME/k8s-yolo5:$FULL_VER
+                    docker build -t $DH_NAME/cicd-yolo5:$FULL_VER .
+                    docker push $DH_NAME/cicd-yolo5:$FULL_VER
                     '''
                 }
             }
@@ -24,8 +24,8 @@ pipeline {
 
         stage('Trigger Release') {
             steps {
-                build job: 'yolo5_prod_releases', wait: false, parameters: [
-                    string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/k8s-polybot:$FULL_VER")
+                build job: 'Polybot_prod_releases', wait: false, parameters: [
+                    string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/cicd-yolo5:$FULL_VER")
                 ]
             }
         }
