@@ -1,5 +1,3 @@
-# yolo-deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +16,7 @@ spec:
     spec:
       containers:
       - name: yolo5
-        image: romkatch/k8s-yolo5:0.0.1
+        image: IMG_URL
         ports:
         - containerPort: 8080
 
@@ -36,3 +34,25 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
+---
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: yolo5-hpa-dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: yolo5-deployment-dev
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
