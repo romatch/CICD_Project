@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 
 
 def get_secret():
-    secret_name = "roman-secret-tg"
+    secret_name = "roman-secret-dev-tg"
     region_name = "us-west-2"
 
     # Create a Secrets Manager client
@@ -98,4 +98,4 @@ def load_test():
 if __name__ == "__main__":
     bot = ImageProcessingBot(TELEGRAM_TOKEN, TELEGRAM_APP_URL)
 
-    app.run(host='0.0.0.0', port=8443)
+    app.run(host='0.0.0.0', port=8442)

@@ -17,6 +17,9 @@ spec:
       containers:
       - name: server
         image: IMG_URL  # placeholder. to be replaces by jenkins releases pipeline
+        env:
+          - name: secret-aws
+            value: "roman-secret-tg"
 ---
 apiVersion: v1
 kind: Service
