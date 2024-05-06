@@ -7,9 +7,10 @@ spec:
   tls:
   - hosts:
     - roman-k8s-bot-dev.devops-int-college.com
+    - roman-k8s-bot.devops-int-college.com
     secretName: romantls
   rules:
-  - host: roman-k8s-bot-dev.devops-int-college.com
+  - host: roman-k8s-bot.devops-int-college.com
     http:
       paths:
       - path: /

@@ -71,9 +71,10 @@ class Bot:
 
 
 class ImageProcessingBot(Bot):
-    def __init__(self, token, telegram_chat_url):
+    def __init__(self, token, telegram_chat_url, queue_name):
         super().__init__(token, telegram_chat_url)
         self.processing_completed = True
+        self.queue_name = queue_name
 
     def handle_message(self, msg):
         if not self.processing_completed:
@@ -203,7 +204,7 @@ class ImageProcessingBot(Bot):
         # Create an SQS client
         sqs = boto3.client('sqs', region_name='us-west-2')
         # Your SQS queue URL (replace with your actual SQS queue URL)
-        queue_url = 'https://sqs.us-west-2.amazonaws.com/352708296901/roman-yolo5'
+        queue_url = f'https://sqs.us-west-2.amazonaws.com/352708296901/{self.queue_name}'
 
         chat_id = str(msg["chat"]["id"])
         msg_dict = {"chat_id": chat_id, "s3_key": s3_key}

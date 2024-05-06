@@ -1,22 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yolo5
+  name: yolo5-dev
   labels:
-    app: yolo5
+    app: yolo5-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yolo5
+      app: yolo5-dev
   template:
     metadata:
         labels:
-          app: yolo5
+          app: yolo5-dev
     spec:
       containers:
-      - name: yolo5
+      - name: yolo5-dev
         image: IMG_URL
+        env:
+          - name: secret-aws
+            value: "roman-secret-dev-tg"
         ports:
         - containerPort: 8080
 
@@ -41,7 +44,7 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: yolo5-dev-hpa
+  name: yolo5-dev-hpa-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
