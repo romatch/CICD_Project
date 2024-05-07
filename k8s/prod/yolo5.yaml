@@ -19,7 +19,7 @@ spec:
         image: IMG_URL
         env:
           - name: secret_name
-            value: "roman-secret-dev-tg"
+            value: "roman-secret-tg"
         ports:
         - containerPort: 8080
 ---

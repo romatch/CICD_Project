@@ -8,6 +8,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
+                    git reset --hard origin/releases  # Reset the local repository to match the remote 'releases' branch
                     printenv
                     if [[ "$IMG_URL" == *"-polybot"* ]]; then
                         YAML_FILE="k8s/prod/polybot.yaml"
@@ -20,6 +21,7 @@ pipeline {
                     git config --global user.email "Jenkins@ip-10.0.0.216"
                     git config --global user.name "romatch"
                     git checkout releases
+                    git diff
                     git merge origin/main
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
                     git add $YAML_FILE

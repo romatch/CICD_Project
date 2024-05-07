@@ -16,7 +16,10 @@ spec:
     spec:
       containers:
       - name: server
-        image: romkatch/cicd-polybot:0.0.44
+        image: IMG_URL
+        env:
+          - name: secret_name
+            value: "roman-secret-tg"
 ---
 apiVersion: v1
 kind: Service
