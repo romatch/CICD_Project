@@ -220,3 +220,4 @@ class ImageProcessingBot(Bot):
             print(f"Message with ID {message_id} sent successfully.")
         self.send_text(msg['chat']['id'], f'Preparing the Prediction Please wait...')
         self.processing_completed = True
+
