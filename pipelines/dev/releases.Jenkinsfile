@@ -19,6 +19,7 @@ pipeline {
                     git config --global user.email "Jenkins@ip-10.0.0.216"
                     git config --global user.name "romatch "
                     git checkout releases
+                    git diff
                     git merge origin/dev
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
                     git add $YAML_FILE
