@@ -16,7 +16,8 @@ pipeline {
                     else
                         exit 7
                     fi
-
+                    git config --global user.email "Jenkins@ip-10.0.0.216"
+                    git config --global user.name "romatch "
                     git checkout releases
                     git merge origin/dev
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE

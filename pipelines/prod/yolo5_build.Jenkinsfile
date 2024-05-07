@@ -25,7 +25,7 @@ pipeline {
         stage('Trigger Release') {
             steps {
                 build job: 'releases_prod', wait: false, parameters: [
-                    string(name: 'POLYBOT_PROD_IMG_URL', value: "$DH_NAME/cicd-yolo5:$FULL_VER")
+                    string(name: 'IMG_URL', value: "$DH_NAME/cicd-yolo5:$FULL_VER")
                 ]
             }
         }
