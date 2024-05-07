@@ -1,5 +1,6 @@
 import json
 import time
+import os
 from pathlib import Path
 import requests
 from detect import run
@@ -10,7 +11,7 @@ from decimal import Decimal
 
 
 def get_secret():
-    secret_name = "roman-secret-tg"
+    secret_name = os.environ['secret_name']
     region_name = "us-west-2"
 
     # Create a Secrets Manager client
@@ -37,7 +38,7 @@ TELEGRAM_TOKEN = secrets["TELEGRAM_TOKEN"]  # os.environ['TELEGRAM_TOKEN']
 TELEGRAM_APP_URL = secrets["TELEGRAM_APP_URL"]  # os.environ['TELEGRAM_APP_URL']
 
 images_bucket = 'romans-s3-bucket'
-queue_name = 'roman-yolo5'
+queue_name = secrets["QUEUE_NAME"]
 sqs_client = boto3.client('sqs', region_name='us-west-2')
 
 with open("data/coco128.yaml", "r") as stream:
@@ -126,7 +127,7 @@ def consume():
                     logger.info(f'Stored prediction summary in DynamoDB')
                     logger.info(f'before post')
                     requests.get(
-                        f'http://polybot-svc:8443/results/?predictionId={prediction_id}&chatId={chat_id}')
+                        f'https://{TELEGRAM_APP_URL}:443/results/?predictionId={prediction_id}&chatId={chat_id}')
                     logger.info(f'after post')
 
                 time.sleep(7)

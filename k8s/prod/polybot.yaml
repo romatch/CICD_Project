@@ -16,7 +16,10 @@ spec:
     spec:
       containers:
       - name: server
-        image: romkatch/cicd-polybot:0.0.34
+        image: IMG_URL  # placeholder. to be replaces by jenkins releases pipeline
+        env:
+          - name: secret_name
+            value: "roman-secret-tg"
 ---
 apiVersion: v1
 kind: Service
