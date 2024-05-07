@@ -67,7 +67,7 @@ class Bot:
         """Bot Main message handler"""
         logger.info(f'Incoming message: {msg}')
         if 'text' in msg:
-            self.send_text(msg['chat']['id'], f'We upload picture here,but did you say blat suka?: {msg["text"]}')
+            self.send_text(msg['chat']['id'], f'We upload picture here,but did you say suka?: {msg["text"]}')
 
 
 class ImageProcessingBot(Bot):
