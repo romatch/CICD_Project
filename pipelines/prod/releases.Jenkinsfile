@@ -8,7 +8,6 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                    git reset --hard origin/releases  # Reset the local repository to match the remote 'releases' branch
                     printenv
                     if [[ "$IMG_URL" == *"-polybot"* ]]; then
                         YAML_FILE="k8s/prod/polybot.yaml"
