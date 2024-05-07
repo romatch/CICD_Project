@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: romkatch/cicd-polybot:0.0.55
+        image: romkatch/cicd-polybot:0.0.56
 ---
 apiVersion: v1
 kind: Service
