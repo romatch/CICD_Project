@@ -10,15 +10,16 @@ pipeline {
                     sh '''
                     git reset --hard origin/releases  # Reset the local repository to match the remote 'releases' branch
                     printenv
-                    if [[ $IMG_URL == *"-polybot"* ]]; then
-                      YAML_FILE="k8s/dev/polybot.yaml"
-                    elif [[ $IMG_URL == *"-yolo5"* ]]; then
-                      YAML_FILE="k8s/dev/yolo5.yaml"
+                    if [[ "$IMG_URL" == *"-polybot"* ]]; then
+                        YAML_FILE="k8s/dev/polybot.yaml"
+                    elif [[ "$IMG_URL" == *"-yolo5"* ]]; then
+                        YAML_FILE="k8s/dev/yolo5.yaml"
                     else
                         exit 7
                     fi
+
                     git config --global user.email "Jenkins@ip-10.0.0.216"
-                    git config --global user.name "romatch "
+                    git config --global user.name "romatch"
                     git checkout releases
                     git diff
                     git merge origin/dev
