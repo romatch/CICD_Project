@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 
 
 def get_secret():
-    secret_name = "roman-secret-dev-tg"
+    secret_name = os.environ['secret_name']
     region_name = "us-west-2"
 
     # Create a Secrets Manager client
