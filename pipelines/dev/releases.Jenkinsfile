@@ -18,7 +18,7 @@ pipeline {
                     fi
 
                     git checkout releases
-                    git merge origin/main
+                    git merge origin/dev
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
                     git add $YAML_FILE
                     git commit -m "$IMG_URL"
