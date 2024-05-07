@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: yolo5
-        image: romkatch/cicd-yolo5:0.0.36
+        image: romkatch/cicd-yolo5:0.0.37
         env:
           - name: secret_name
             value: "roman-secret-tg"
@@ -38,23 +38,3 @@ spec:
       targetPort: 8080
 ---
 
----
-
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: yolo5-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: yolo5-deployment
-  minReplicas: 1
-  maxReplicas: 2
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
