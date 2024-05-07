@@ -16,11 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-<<<<<<< HEAD
-        image: romkatch/cicdev-polybot:0.0.29
-=======
-        image: romkatch/cicdev-polybot:0.0.29
->>>>>>> origin/dev
+        image: romkatch/cicdev-polybot:0.0.26
         env:
           - name: secret_name
             value: "roman-secret-dev-tg"
