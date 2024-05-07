@@ -22,7 +22,7 @@ spec:
             value: "roman-secret-dev-tg"
         ports:
         - containerPort: 8080
-#
+
 ---
 # yolo-service.yaml
 
