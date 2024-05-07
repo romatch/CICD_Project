@@ -23,6 +23,7 @@ pipeline {
                     git pull
                     git diff
                     git merge origin/dev
+                    git merge origin/dev
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
                     git add $YAML_FILE
                     git commit -m "$IMG_URL"
