@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: yolo5
-        image: romkatch/cicd-yolo5:0.0.42
+        image: romkatch/cicd-yolo5:0.0.43
         env:
           - name: secret_name
             value: "roman-secret-tg"
