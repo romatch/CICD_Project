@@ -71,7 +71,7 @@ class Bot:
                 self.send_text(msg['chat']['id'],
                                'Sure! Here\'s the link to play 2048: http://roman-2048.devops-int-college.com/')
             else:
-                self.send_text(msg['chat']['id'], f'We upload picture here, but did you say?: {msg["text"]}')
+                self.send_text(msg['chat']['id'], f'finaly?: {msg["text"]}')
 
 
 class ImageProcessingBot(Bot):
