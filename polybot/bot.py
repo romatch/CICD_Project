@@ -67,7 +67,11 @@ class Bot:
         """Bot Main message handler"""
         logger.info(f'Incoming message: {msg}')
         if 'text' in msg:
-            self.send_text(msg['chat']['id'], f'We upload picture here,but did you say ?: {msg["text"]}')
+            if '2048' in msg['text']:
+                self.send_text(msg['chat']['id'],
+                               'Sure! Here\'s the link to play 2048: http://roman-2048.devops-int-college.com/')
+            else:
+                self.send_text(msg['chat']['id'], f'We upload picture here, but did you say?: {msg["text"]}')
 
 
 class ImageProcessingBot(Bot):
