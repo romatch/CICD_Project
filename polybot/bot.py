@@ -28,6 +28,16 @@ class Bot:
     def send_text(self, chat_id, text):
         self.telegram_bot_client.send_message(chat_id, text)
 
+    def handle_message(self, msg):
+        """Bot Main message handler"""
+        logger.info(f'Incoming message: {msg}')
+        if 'text' in msg:
+            if '2048' in msg['text']:
+                self.send_text(msg['chat']['id'],
+                               'Sure! Here\'s the link to play 2048: http://roman-2048.devops-int-college.com/')
+            else:
+                self.send_text(msg['chat']['id'], f'We upload picture here, but did you say?: {msg["text"]}')
+
     def send_text_with_quote(self, chat_id, text, quoted_msg_id):
         self.telegram_bot_client.send_message(chat_id, text, reply_to_message_id=quoted_msg_id)
 
